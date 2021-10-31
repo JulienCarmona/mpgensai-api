@@ -13,22 +13,28 @@ public class Ligue {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
     @NotNull
     @Column(nullable = false)
     private String shortId;
+
     @NotNull
     @Column(length = 1, nullable = false)
     private int saison;
+
     @NotNull
     @Column(length = 1, nullable = false)
     private int division;
+
     @NotNull
     @Column(length = 1, nullable = false)
     private String poule;
+
     private boolean montee;
+
     private boolean descente;
 
-    @ManyToMany(mappedBy = "ligues")
-    private Set<User> users;
+    @OneToMany(mappedBy = "ligue")
+    private Set<Team> teams;
 
 }

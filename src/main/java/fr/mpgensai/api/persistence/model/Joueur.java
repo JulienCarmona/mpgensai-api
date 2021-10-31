@@ -5,7 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -26,6 +26,6 @@ public class Joueur {
     private int promo;
 
     @OneToMany(mappedBy = "joueur")
-    private List<User> users;
+    private Set<User> users;
 
 }
