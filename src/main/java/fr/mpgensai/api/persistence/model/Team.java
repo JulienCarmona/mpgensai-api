@@ -18,4 +18,9 @@ public class Team {
     @ManyToOne
     private Ligue ligue;
 
+    private String teamId;
+
+    private String name;
+
+    private int classementFinal;
 }

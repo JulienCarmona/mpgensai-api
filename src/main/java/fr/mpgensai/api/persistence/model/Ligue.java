@@ -37,4 +37,9 @@ public class Ligue {
     @OneToMany(mappedBy = "ligue")
     private Set<Team> teams;
 
+
+    public String getMpgId() {
+        return shortId + "_" + saison + "_" + division;
+    }
+
 }
