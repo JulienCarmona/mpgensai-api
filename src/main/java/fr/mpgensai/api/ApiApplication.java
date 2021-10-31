@@ -1,12 +1,9 @@
-package fr.mpgensai.api.spring;
+package fr.mpgensai.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
-@Import(ApiPersistenceJpaConfig.class)
 public class ApiApplication {
 
 	public static void main(String[] args) {
