@@ -1,18 +1,23 @@
 package fr.mpgensai.api.persistence.model;
 
-import lombok.Data;
+import fr.mpgensai.common.model.IEntity;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
-@Data
-public class Ligue {
+@Builder(toBuilder = true)
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
+@NoArgsConstructor(access = AccessLevel.PACKAGE)
+@Setter(value = AccessLevel.PACKAGE)
+@Getter
+public class Ligue implements IEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @NotNull
     @Column(nullable = false)
@@ -30,16 +35,34 @@ public class Ligue {
     @Column(length = 1, nullable = false)
     private String poule;
 
-    private boolean montee;
+    @NotNull
+    @Column(length = 1, nullable = false)
+    private int montee;
 
-    private boolean descente;
+    @NotNull
+    @Column(length = 1, nullable = false)
+    private int descente;
 
     @OneToMany(mappedBy = "ligue")
     private Set<Team> teams;
 
-
-    public String getMpgId() {
+    public String getMpgDivisionId() {
         return shortId + "_" + saison + "_" + division;
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Ligue))
+            return false;
+        Ligue other = (Ligue) o;
+        return id != null &&
+                id.equals(other.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }
