@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Transactional
 @RequiredArgsConstructor
 public class JoueurServiceImpl extends AbstractService<Joueur> implements IJoueurService {
 
@@ -25,6 +24,7 @@ public class JoueurServiceImpl extends AbstractService<Joueur> implements IJoueu
     }
 
     @Override
+    @Transactional
     public void deleteByNomAndPrenom(String nom, String prenom) {
         repository.deleteByNomAndPrenom(nom, prenom);
     }

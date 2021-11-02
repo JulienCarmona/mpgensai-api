@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Transactional
 @RequiredArgsConstructor
 public class UserServiceImpl extends AbstractService<User> implements IUserService {
 
@@ -22,6 +21,7 @@ public class UserServiceImpl extends AbstractService<User> implements IUserServi
     }
 
     @Override
+    @Transactional
     public void deleteByMpgUserId(String dummyMpgUserId) {
         repository.deleteByMpgUserId(dummyMpgUserId);
     }

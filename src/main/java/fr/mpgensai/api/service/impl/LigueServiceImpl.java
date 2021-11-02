@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Transactional
 @RequiredArgsConstructor
 public class LigueServiceImpl extends AbstractService<Ligue> implements ILigueService {
 
@@ -26,6 +25,7 @@ public class LigueServiceImpl extends AbstractService<Ligue> implements ILigueSe
 
 
     @Override
+    @Transactional
     public void deleteByShortId(String shortId) {
         repository.deleteByShortId(shortId);
     }
