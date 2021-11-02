@@ -1,4 +1,4 @@
-package fr.mpgensai.api.service;
+package fr.mpgensai.api.common;
 
 import fr.mpgensai.api.utill.IDUtil;
 import fr.mpgensai.common.model.IWithId;
