@@ -1,9 +1,9 @@
-package fr.mpgensai.api.persistence.dao;
+package fr.mpgensai.api.repository;
 
-import fr.mpgensai.api.persistence.model.Team;
+import fr.mpgensai.api.core.model.Team;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ITeamRepository extends JpaRepository<Team, Long> {
 
-
+    void deleteByMpgTeamId(String teamMpgTeamId);
 }
