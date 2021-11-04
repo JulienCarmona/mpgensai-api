@@ -13,10 +13,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@ExtendWith(SpringExtension.class)
-@EnableAutoConfiguration
-@ContextConfiguration(classes = {ServiceConfig.class, RepositoryConfig.class, EntityConfig.class})
-public class UserServiceIntegrationTest extends AbstractRawServiceIntegrationTest<User> {
+public class UserServiceIntegrationTest extends ConfigServiceIntegrationTest<User> {
 
     private static final String DUMMY_USER_MPG_USER_ID = "testValueMpgUserId";
 

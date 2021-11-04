@@ -15,10 +15,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
-@ExtendWith(SpringExtension.class)
-@EnableAutoConfiguration
-@ContextConfiguration(classes = {ServiceConfig.class, RepositoryConfig.class, EntityConfig.class})
-public class TeamServiceIntegrationTest extends AbstractRawServiceIntegrationTest<Team> {
+public class TeamServiceIntegrationTest extends ConfigServiceIntegrationTest<Team> {
 
     private static final String DUMMY_TEAM_MPG_TEAM_ID = "testValueMpgTeamId";
 
