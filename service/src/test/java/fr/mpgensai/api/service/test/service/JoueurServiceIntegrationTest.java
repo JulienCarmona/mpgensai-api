@@ -3,14 +3,15 @@ package fr.mpgensai.api.service.test.service;
 import fr.mpgensai.api.core.model.Joueur;
 import fr.mpgensai.api.service.IJoueurService;
 import fr.mpgensai.api.service.common.IRawService;
+import fr.mpgensai.api.service.test.common.ConfigServiceIntegrationTest;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashSet;
 
 public class JoueurServiceIntegrationTest extends ConfigServiceIntegrationTest<Joueur> {
 
-    private final static String DUMMY_JOUEUR_NAME = "testNom";
-    private final static String DUMMY_JOUEUR_PRENOM = "testPrenom";
+    private final static String DUMMY_JOUEUR_NAME = "dummyValueNom";
+    private final static String DUMMY_JOUEUR_PRENOM = "dummyValuePrenom";
     @Autowired
     private IJoueurService service;
 
@@ -31,7 +32,7 @@ public class JoueurServiceIntegrationTest extends ConfigServiceIntegrationTest<J
     }
 
     @Override
-    public void cleanDataBaseFromPersistedEntities() {
+    public void cleanDataBaseFromPersistedTestEntities() {
         service.deleteByNomAndPrenom(DUMMY_JOUEUR_NAME, DUMMY_JOUEUR_PRENOM);
     }
 

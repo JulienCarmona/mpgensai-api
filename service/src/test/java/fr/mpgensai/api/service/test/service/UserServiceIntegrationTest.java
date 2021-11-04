@@ -1,21 +1,14 @@
 package fr.mpgensai.api.service.test.service;
 
 import fr.mpgensai.api.core.model.User;
-import fr.mpgensai.api.core.spring.EntityConfig;
-import fr.mpgensai.api.repository.spring.RepositoryConfig;
 import fr.mpgensai.api.service.IUserService;
 import fr.mpgensai.api.service.common.IRawService;
-import fr.mpgensai.api.service.spring.ServiceConfig;
-import fr.mpgensai.api.service.test.common.AbstractRawServiceIntegrationTest;
-import org.junit.jupiter.api.extension.ExtendWith;
+import fr.mpgensai.api.service.test.common.ConfigServiceIntegrationTest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 public class UserServiceIntegrationTest extends ConfigServiceIntegrationTest<User> {
 
-    private static final String DUMMY_USER_MPG_USER_ID = "testValueMpgUserId";
+    private static final String DUMMY_USER_MPG_USER_ID = "dummyValueMpgUserId";
 
     @Autowired
     private IUserService service;
@@ -35,7 +28,7 @@ public class UserServiceIntegrationTest extends ConfigServiceIntegrationTest<Use
 
 
     @Override
-    protected void cleanDataBaseFromPersistedEntities() {
+    protected void cleanDataBaseFromPersistedTestEntities() {
         service.deleteByMpgUserId(DUMMY_USER_MPG_USER_ID);
     }
 

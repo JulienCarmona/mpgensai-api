@@ -27,14 +27,13 @@ public abstract class AbstractRawServiceIntegrationTest<T extends IWithId> {
     @Test
     public void givenResourceExists_whenResourceIsRetrieved_thenNoExceptions() {
         final T existingResource = persistNewEntity();
-        getApi().findOne(existingResource.getId());
-        getApi().delete(existingResource.getId());
-        cleanDataBaseFromPersistedEntities();
+        assertDoesNotThrow(() -> getApi().findOne(existingResource.getId()));
+        cleanDataBaseFromPersistedTestEntities();
     }
 
     @Test
     public void givenResourceDoesNotExist_whenResourceIsRetrieved_thenNoExceptions() {
-        getApi().findOne(IDUtil.randomPositiveLong());
+        assertDoesNotThrow(() -> getApi().findOne(IDUtil.randomPositiveLong()));
     }
 
     @Test
@@ -42,7 +41,7 @@ public abstract class AbstractRawServiceIntegrationTest<T extends IWithId> {
         final T existingResource = persistNewEntity();
         final T retrievedResource = getApi().findOne(existingResource.getId());
         assertNotNull(retrievedResource);
-        cleanDataBaseFromPersistedEntities();
+        cleanDataBaseFromPersistedTestEntities();
     }
 
     @Test
@@ -50,14 +49,14 @@ public abstract class AbstractRawServiceIntegrationTest<T extends IWithId> {
         final T existingResource = persistNewEntity();
         final T retrievedResource = getApi().findOne(existingResource.getId());
         assertEquals(existingResource, retrievedResource);
-        cleanDataBaseFromPersistedEntities();
+        cleanDataBaseFromPersistedTestEntities();
     }
 
 
     // tests : find - all
     @Test
     public void whenAllResourcesAreRetrieved_thenNoExceptions() {
-        getApi().findAll();
+        assertDoesNotThrow(() -> getApi().findAll());
     }
 
     @Test
@@ -73,7 +72,7 @@ public abstract class AbstractRawServiceIntegrationTest<T extends IWithId> {
         final List<T> allResources = getApi().findAll();
         // Then
         assertThat(allResources, not(Matchers.<T>empty()));
-        cleanDataBaseFromPersistedEntities();
+        cleanDataBaseFromPersistedTestEntities();
     }
 
     @Test
@@ -102,7 +101,7 @@ public abstract class AbstractRawServiceIntegrationTest<T extends IWithId> {
         return getApi().create(createNewEntity());
     }
 
-    protected abstract void cleanDataBaseFromPersistedEntities();
+    protected abstract void cleanDataBaseFromPersistedTestEntities();
 
 
 }

@@ -1,4 +1,4 @@
-package fr.mpgensai.api.service.test.service;
+package fr.mpgensai.api.service.test.common;
 
 import fr.mpgensai.api.core.common.IEntity;
 import fr.mpgensai.api.core.spring.EntityConfig;
@@ -12,6 +12,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
 @EnableAutoConfiguration
-@ContextConfiguration(classes = {ServiceConfig.class, RepositoryConfig.class, EntityConfig.class})
+@ContextConfiguration(classes = { ServiceConfig.class, RepositoryConfig.class, EntityConfig.class })
 public abstract class ConfigServiceIntegrationTest<T extends IEntity> extends AbstractServiceIntegrationTest<T> {
 }
