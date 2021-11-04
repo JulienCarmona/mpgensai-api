@@ -1,7 +1,6 @@
-package fr.mpgensai.api.persistence.model;
+package fr.mpgensai.api.core.model;
 
-import fr.mpgensai.common.model.IEntity;
-import fr.mpgensai.common.model.INameableEntity;
+import fr.mpgensai.api.core.common.INameableEntity;
 import lombok.*;
 
 import javax.persistence.*;

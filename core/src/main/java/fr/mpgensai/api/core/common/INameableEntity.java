@@ -1,4 +1,4 @@
-package fr.mpgensai.common.model;
+package fr.mpgensai.api.core.common;
 
 public interface INameableEntity extends IEntity, IWithName {
 }

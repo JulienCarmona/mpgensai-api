@@ -1,4 +1,4 @@
-package fr.mpgensai.common.model.exception;
+package fr.mpgensai.api.core.exception;
 
 public class MyEntityNotFoundException extends RuntimeException{
 

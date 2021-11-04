@@ -1,7 +1,7 @@
-package fr.mpgensai.api.persistence.model;
+package fr.mpgensai.api.core.model;
 
 
-import fr.mpgensai.common.model.IEntity;
+import fr.mpgensai.api.core.common.IEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -38,7 +38,6 @@ public class Joueur implements IEntity {
 
     @OneToMany(mappedBy = "joueur")
     private Set<User> users;
-
 
 
     @Override

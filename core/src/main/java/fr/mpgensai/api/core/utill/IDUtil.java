@@ -1,4 +1,4 @@
-package fr.mpgensai.api.utill;
+package fr.mpgensai.api.core.utill;
 
 import java.util.Random;
 
