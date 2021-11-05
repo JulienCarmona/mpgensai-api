@@ -36,22 +36,33 @@ public class Joueur implements IEntity {
     @Column(length = 9, nullable = false)
     private String promo;
 
-    @OneToMany(mappedBy = "joueur")
+    @OneToMany(mappedBy = "joueur",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
     private Set<User> users;
 
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Joueur))
-            return false;
+        if (!(o instanceof Joueur)) return false;
         Joueur other = (Joueur) o;
-        return id != null &&
-                id.equals(other.getId());
+        return id != null && id.equals(other.getId());
     }
 
     @Override
     public int hashCode() {
         return getClass().hashCode();
     }
+
+    public void addUser(User user) {
+        users.add(user);
+        user.setJoueur(this);
+    }
+
+    public void removeUser(User user) {
+        users.remove(user);
+        user.setJoueur(null);
+    }
+
 }
