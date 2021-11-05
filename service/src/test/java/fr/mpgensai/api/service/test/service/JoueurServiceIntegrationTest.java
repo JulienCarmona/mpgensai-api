@@ -10,8 +10,9 @@ import java.util.HashSet;
 
 public class JoueurServiceIntegrationTest extends ConfigServiceIntegrationTest<Joueur> {
 
-    private final static String DUMMY_JOUEUR_NAME = "dummyValueNom";
+    private final static String DUMMY_JOUEUR_NOM = "dummyValueNom";
     private final static String DUMMY_JOUEUR_PRENOM = "dummyValuePrenom";
+    private static final String DUMMY_JOUEUR_PROMO = "2021";
     @Autowired
     private IJoueurService service;
 
@@ -23,9 +24,9 @@ public class JoueurServiceIntegrationTest extends ConfigServiceIntegrationTest<J
     @Override
     protected Joueur createNewEntity() {
         final Joueur newJoueurEntity = Joueur.builder()
-                .nom(DUMMY_JOUEUR_NAME)
+                .nom(DUMMY_JOUEUR_NOM)
                 .prenom(DUMMY_JOUEUR_PRENOM)
-                .promo("2021")
+                .promo(DUMMY_JOUEUR_PROMO)
                 .users(new HashSet<>())
                 .build();
         return newJoueurEntity;
@@ -33,7 +34,7 @@ public class JoueurServiceIntegrationTest extends ConfigServiceIntegrationTest<J
 
     @Override
     public void cleanDataBaseFromPersistedTestEntities() {
-        service.deleteByNomAndPrenom(DUMMY_JOUEUR_NAME, DUMMY_JOUEUR_PRENOM);
+        service.deleteByNomAndPrenom(DUMMY_JOUEUR_NOM, DUMMY_JOUEUR_PRENOM);
     }
 
 }
