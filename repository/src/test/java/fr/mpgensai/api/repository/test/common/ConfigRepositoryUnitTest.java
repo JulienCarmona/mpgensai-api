@@ -13,5 +13,5 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @EnableAutoConfiguration
 @ContextConfiguration(classes = {RepositoryConfig.class, EntityConfig.class})
 @TestPropertySource(locations = {"classpath:persistence-h2.properties"})
-public abstract class ConfigRepositoryTest<T extends IEntity> {
+public abstract class ConfigRepositoryUnitTest<T extends IEntity> extends AbstractRepositoryUnitTest<T>{
 }

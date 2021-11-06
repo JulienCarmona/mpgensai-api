@@ -4,19 +4,23 @@ import fr.mpgensai.api.core.model.Joueur;
 import fr.mpgensai.api.core.model.User;
 import fr.mpgensai.api.repository.IJoueurRepository;
 import fr.mpgensai.api.repository.IUserRepository;
-import fr.mpgensai.api.repository.test.common.ConfigRepositoryTest;
+import fr.mpgensai.api.repository.test.common.ConfigRepositoryUnitTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
-public class JoueurRepositoryUnitTest extends ConfigRepositoryTest<Joueur> {
+public class JoueurRepositoryUnitTest extends ConfigRepositoryUnitTest<Joueur> {
 
     private final static String DUMMY_JOUEUR_NOM = "dummyValueNom";
     private final static String DUMMY_JOUEUR_PRENOM = "dummyValuePrenom";
@@ -37,7 +41,7 @@ public class JoueurRepositoryUnitTest extends ConfigRepositoryTest<Joueur> {
     // tests : add
     @Test
     public void whenAddingJoueurWithUsers_thenUsersShouldAlsoBePersisted() {
-        Joueur joueur = createNewDummyJoueur();
+        Joueur joueur = createNewDummyEntity();
         joueur.addUser(User.builder().mpgUserId(DUMMY_USER_MPG_USER_ID).build());
         joueur.addUser(User.builder().mpgUserId(DUMMY_USER_MPG_USER_ID).build());
         repository.save(joueur);
@@ -45,37 +49,10 @@ public class JoueurRepositoryUnitTest extends ConfigRepositoryTest<Joueur> {
         cleanDataBase();
     }
 
-    // tests : deleteById
-    @Test
-    public void givenOnlyOneJoueur_whenDeleteByIdFromRepository_thenRepositoryShouldBeEmpty() {
-        Joueur persistedJoueur = persistNewDummyJoueur();
-        repository.deleteById(persistedJoueur.getId());
-        assertThat(repository.count()).isEqualTo(0);
-    }
-
-    @Test
-    public void givenJoueurIsDeleted_whenFindByIdAndTryToGetJoueur_thenNoSuchElementExceptionIsThrown() {
-        Joueur persistedJoueur = persistNewDummyJoueur();
-        repository.deleteById(persistedJoueur.getId());
-        assertThrows(NoSuchElementException.class,
-                () -> repository.findById(persistedJoueur.getId()).get(),
-                "NoSuchElementException error was expected");
-    }
-
-    // tests : deleteAll
-    @Test
-    public void givenJoueurs_whenDeleteAllFromRepository_thenRepositoryShouldBeEmpty() {
-        Joueur persistedJoueur1 = persistNewDummyJoueur();
-        Joueur persistedJoueur2 = persistNewDummyJoueur();
-        Joueur persistedJoueur3 = persistNewDummyJoueur();
-        repository.deleteAll();
-        assertThat(repository.count()).isEqualTo(0);
-    }
-
     @Test
     public void whenDeletingJoueur_thenUsersShouldAlsoBeDeleted() {
         Joueur joueurPersisted = peristNewDummyJoueurWith4Users();
-        repository.deleteById(joueurPersisted.getId());
+        getRepository().deleteById(joueurPersisted.getId());
         assertThat(userRepository.count()).isEqualTo(0);
     }
 
@@ -127,10 +104,13 @@ public class JoueurRepositoryUnitTest extends ConfigRepositoryTest<Joueur> {
         cleanDataBase();
     }
 
-    @Autowired
-    private EntityManager entityManager;
+    @Override
+    protected JpaRepository<Joueur, Long> getRepository() {
+        return repository;
+    }
 
-    private Joueur createNewDummyJoueur() {
+    @Override
+    protected Joueur createNewDummyEntity() {
         return createNewJoueur(DUMMY_JOUEUR_NOM, DUMMY_JOUEUR_PRENOM);
     }
 
@@ -147,21 +127,13 @@ public class JoueurRepositoryUnitTest extends ConfigRepositoryTest<Joueur> {
         return repository.save(createNewJoueur(nom, prenom));
     }
 
-    private Joueur persistNewDummyJoueur() {
-        return repository.save(createNewDummyJoueur());
-    }
-
     private Joueur peristNewDummyJoueurWith4Users() {
-        Joueur joueur = createNewDummyJoueur();
+        Joueur joueur = createNewDummyEntity();
         joueur.addUser(User.builder().mpgUserId(DUMMY_USER_MPG_USER_ID).build());
         joueur.addUser(User.builder().mpgUserId(DUMMY_USER_MPG_USER_ID).build());
         joueur.addUser(User.builder().mpgUserId(DUMMY_USER_MPG_USER_ID).build());
         joueur.addUser(User.builder().mpgUserId(DUMMY_USER_MPG_USER_ID).build());
         return repository.save(joueur);
-    }
-
-    private void cleanDataBase() {
-        repository.deleteAll();
     }
 
 
