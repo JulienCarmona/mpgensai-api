@@ -33,7 +33,7 @@ public class JoueurServiceIntegrationTest extends ConfigServiceIntegrationTest<J
     }
 
     @Override
-    public void cleanDataBaseFromPersistedTestEntities() {
+    protected void cleanDataBaseFromPersistedTestEntities() {
         service.deleteByNomAndPrenom(DUMMY_JOUEUR_NOM, DUMMY_JOUEUR_PRENOM);
     }
 
