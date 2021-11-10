@@ -11,13 +11,13 @@ import java.util.Arrays;
 import java.util.List;
 
 @Component
+@Slf4j
 public class StartupLoggingComponent implements InitializingBean {
 
     private static final String ENV_TARGET_KEY = "envTarget";
     private static final String PERSISTENCE_TARGET_KEY = "persistenceTarget";
     private static final String ACTIVE_SPRING_PROFILE_KEY = "spring.profiles.active";
     private static final String PERSISTENCE_HOST_KEY = "spring.datasource.url";
-    private final Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     private Environment env;
 
@@ -27,34 +27,34 @@ public class StartupLoggingComponent implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        logger.info("============================================================================");
+        log.info("============================================================================");
         try {
             logEnvTarget(env);
             logPersistenceTarget(env);
 
             logPersistenceData(env);
         } catch (final Exception ex) {
-            logger.warn("There was a problem logging data on startup", ex);
+            log.warn("There was a problem logging data on startup", ex);
         }
 
-        logger.info("============================================================================");
+        log.info("============================================================================");
     }
 
     // UTIL
 
     private void logEnvTarget(final Environment environment) {
         final String envTarget = getValueOfProperty(environment, ENV_TARGET_KEY, "local", Arrays.asList("local", "dev", "beta"));
-        logger.info("{} = {}", ENV_TARGET_KEY, envTarget);
+        log.info("{} = {}", ENV_TARGET_KEY, envTarget);
     }
 
     private void logPersistenceTarget(final Environment environment) {
         final String envTarget = getValueOfProperty(environment, PERSISTENCE_TARGET_KEY, "h2", Arrays.asList("h2", "mysql", "mariadb"));
-        logger.info("{} = {}", PERSISTENCE_TARGET_KEY, envTarget);
+        log.info("{} = {}", PERSISTENCE_TARGET_KEY, envTarget);
     }
 
     private void logPersistenceData(final Environment environment) {
         final String persistenceHost = getValueOfProperty(environment, PERSISTENCE_HOST_KEY, "not-found", null);
-        logger.info("{} = {}", PERSISTENCE_HOST_KEY, persistenceHost);
+        log.info("{} = {}", PERSISTENCE_HOST_KEY, persistenceHost);
     }
 
     //
@@ -63,17 +63,17 @@ public class StartupLoggingComponent implements InitializingBean {
         String propValue = environment.getProperty(propertyKey);
         if (propValue == null) {
             propValue = propertyDefaultValue;
-            logger.info("The {} doesn't have an explicit value; default value is = {}", propertyKey, propertyDefaultValue);
+            log.info("The {} doesn't have an explicit value; default value is = {}", propertyKey, propertyDefaultValue);
         }
 
         if (acceptablePropertyValues != null) {
             if (!acceptablePropertyValues.contains(propValue)) {
-                logger.warn("The property = {} has an invalid value = {}", propertyKey, propValue);
+                log.warn("The property = {} has an invalid value = {}", propertyKey, propValue);
             }
         }
 
         if (propValue == null) {
-            logger.warn("The property = {} is null", propertyKey);
+            log.warn("The property = {} is null", propertyKey);
         }
 
         return propValue;
