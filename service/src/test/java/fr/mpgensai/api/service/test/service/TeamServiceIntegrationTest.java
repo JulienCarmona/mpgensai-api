@@ -6,8 +6,6 @@ import fr.mpgensai.api.service.common.IRawService;
 import fr.mpgensai.api.service.test.common.ConfigServiceIntegrationTest;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.junit.jupiter.api.Assertions.fail;
-
 public class TeamServiceIntegrationTest extends ConfigServiceIntegrationTest<Team> {
 
     private static final String DUMMY_TEAM_MPG_TEAM_ID = "dummyValueMpgTeamId";

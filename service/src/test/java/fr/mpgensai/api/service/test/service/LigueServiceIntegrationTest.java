@@ -25,7 +25,6 @@ public class LigueServiceIntegrationTest extends ConfigServiceIntegrationTest<Li
                 .division(1)
                 .poule("A")
                 .build();
-        System.out.println(newLigueEntity);
         return newLigueEntity;
     }
 
