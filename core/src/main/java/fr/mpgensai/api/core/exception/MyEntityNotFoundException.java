@@ -1,6 +1,8 @@
 package fr.mpgensai.api.core.exception;
 
-public class MyEntityNotFoundException extends RuntimeException{
+import java.util.function.Supplier;
+
+public class MyEntityNotFoundException extends RuntimeException {
 
     public MyEntityNotFoundException() {
         super();
@@ -16,5 +18,9 @@ public class MyEntityNotFoundException extends RuntimeException{
 
     public MyEntityNotFoundException(final Throwable cause) {
         super(cause);
+    }
+
+    public MyEntityNotFoundException(long id) {
+        super("Entity with id " + id + "not found in the database");
     }
 }

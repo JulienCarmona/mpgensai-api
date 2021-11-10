@@ -2,6 +2,7 @@ package fr.mpgensai.api.service.common.impl;
 
 import fr.mpgensai.api.core.common.IWithId;
 import fr.mpgensai.api.core.exception.MyEntityNotFoundException;
+import fr.mpgensai.api.repository.IJoueurRepository;
 import fr.mpgensai.api.service.common.IRawService;
 import lombok.NonNull;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,7 +16,8 @@ public abstract class AbstractRawService<T extends IWithId> implements IRawServi
     // find - one
     @Override
     public T findOne(long id) {
-        return getRepository().findById(id).orElse(null);
+        return getRepository().findById(id)
+                .orElseThrow(() -> new MyEntityNotFoundException(id));
     }
 
     // find - all
