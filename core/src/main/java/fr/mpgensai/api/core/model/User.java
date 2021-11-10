@@ -1,5 +1,6 @@
 package fr.mpgensai.api.core.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import fr.mpgensai.api.core.common.IEntity;
 import lombok.*;
 
@@ -19,6 +20,7 @@ public class User implements IEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private Joueur joueur;
 
