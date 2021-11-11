@@ -1,6 +1,7 @@
 package fr.mpgensai.api.service.test.common;
 
 import fr.mpgensai.api.core.common.IWithId;
+import fr.mpgensai.api.core.exception.MyEntityNotFoundException;
 import fr.mpgensai.api.core.utill.IDUtil;
 import fr.mpgensai.api.service.common.IRawService;
 import org.hamcrest.Matchers;
@@ -17,14 +18,6 @@ public abstract class AbstractRawServiceIntegrationTest<T extends IWithId> {
 
     // tests : find - one
     @Test
-    public final void givenResourceDoesNotExist_whenResourceIsRetrieved_thenNoResourceIsReceived() {
-        // When
-        final T createdResource = getApi().findOne(IDUtil.randomPositiveLong());
-        // Then
-        assertNull(createdResource);
-    }
-
-    @Test
     public void givenResourceExists_whenResourceIsRetrieved_thenNoExceptions() {
         final T existingResource = persistNewEntity();
         assertDoesNotThrow(() -> getApi().findOne(existingResource.getId()));
@@ -32,8 +25,14 @@ public abstract class AbstractRawServiceIntegrationTest<T extends IWithId> {
     }
 
     @Test
-    public void givenResourceDoesNotExist_whenResourceIsRetrieved_thenNoExceptions() {
-        assertDoesNotThrow(() -> getApi().findOne(IDUtil.randomPositiveLong()));
+    public void givenResourceDoesNotExist_whenResourceIsRetrieved_thenMyEntityNotFoundExceptionThrown() {
+        final Long randomPositiveLongId = IDUtil.randomPositiveLong();
+        Exception exception = assertThrows(MyEntityNotFoundException.class,
+                () -> getApi().findOne(randomPositiveLongId),
+                "NoSuchElementException error was expected");
+        String expectedMessage = "Entity with id " + randomPositiveLongId + "not found in the database";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
     }
 
     @Test

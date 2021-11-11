@@ -20,7 +20,7 @@ public abstract class AbstractRepositoryUnitTest<T extends IWithId> {
     }
 
     @Test
-    public void givenJoueurIsDeleted_whenFindByIdAndTryToGetJoueur_thenNoSuchElementExceptionIsThrown() {
+    public void givenJoueurDeleted_whenFindByIdAndTryToGetJoueur_thenNoSuchElementExceptionThrown() {
         T persistedJoueur = persistNewDummyEntity();
         getRepository().deleteById(persistedJoueur.getId());
         assertThrows(NoSuchElementException.class,
