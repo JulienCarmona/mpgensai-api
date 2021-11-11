@@ -1,7 +1,5 @@
 package fr.mpgensai.api.core.exception;
 
-import java.util.function.Supplier;
-
 public class MyEntityNotFoundException extends RuntimeException {
 
     public MyEntityNotFoundException() {

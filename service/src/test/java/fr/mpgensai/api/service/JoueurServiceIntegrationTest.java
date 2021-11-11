@@ -1,9 +1,8 @@
-package fr.mpgensai.api.service.test.service;
+package fr.mpgensai.api.service;
 
 import fr.mpgensai.api.core.model.Joueur;
-import fr.mpgensai.api.service.IJoueurService;
+import fr.mpgensai.api.service.common.ConfigServiceIntegrationTest;
 import fr.mpgensai.api.service.common.IRawService;
-import fr.mpgensai.api.service.test.common.ConfigServiceIntegrationTest;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashSet;

@@ -1,4 +1,4 @@
-package fr.mpgensai.api.repository.test.common;
+package fr.mpgensai.api.repository.common;
 
 import fr.mpgensai.api.core.common.IWithId;
 import org.junit.jupiter.api.Test;

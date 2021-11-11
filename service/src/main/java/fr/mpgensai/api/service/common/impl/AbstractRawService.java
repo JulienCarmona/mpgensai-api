@@ -2,7 +2,6 @@ package fr.mpgensai.api.service.common.impl;
 
 import fr.mpgensai.api.core.common.IWithId;
 import fr.mpgensai.api.core.exception.MyEntityNotFoundException;
-import fr.mpgensai.api.repository.IJoueurRepository;
 import fr.mpgensai.api.service.common.IRawService;
 import lombok.NonNull;
 import org.springframework.data.jpa.repository.JpaRepository;

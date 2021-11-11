@@ -1,9 +1,8 @@
-package fr.mpgensai.api.service.test.common;
+package fr.mpgensai.api.service.common;
 
 import fr.mpgensai.api.core.common.IWithId;
 import fr.mpgensai.api.core.exception.MyEntityNotFoundException;
 import fr.mpgensai.api.core.utill.IDUtil;
-import fr.mpgensai.api.service.common.IRawService;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 

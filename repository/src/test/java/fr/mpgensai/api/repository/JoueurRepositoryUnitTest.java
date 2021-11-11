@@ -1,10 +1,8 @@
-package fr.mpgensai.api.repository.test;
+package fr.mpgensai.api.repository;
 
 import fr.mpgensai.api.core.model.Joueur;
 import fr.mpgensai.api.core.model.User;
-import fr.mpgensai.api.repository.IJoueurRepository;
-import fr.mpgensai.api.repository.IUserRepository;
-import fr.mpgensai.api.repository.test.common.ConfigRepositoryUnitTest;
+import fr.mpgensai.api.repository.common.ConfigRepositoryUnitTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;

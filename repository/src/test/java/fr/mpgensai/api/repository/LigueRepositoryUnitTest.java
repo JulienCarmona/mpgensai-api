@@ -1,8 +1,7 @@
-package fr.mpgensai.api.repository.test;
+package fr.mpgensai.api.repository;
 
 import fr.mpgensai.api.core.model.Ligue;
-import fr.mpgensai.api.repository.ILigueRepository;
-import fr.mpgensai.api.repository.test.common.ConfigRepositoryUnitTest;
+import fr.mpgensai.api.repository.common.ConfigRepositoryUnitTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 
