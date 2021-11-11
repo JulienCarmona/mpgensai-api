@@ -60,9 +60,12 @@ public class Joueur implements IEntity {
         user.setJoueur(this);
     }
 
+    public void addAllUser(Set<User> users) {
+        users.forEach(this::addUser);
+    }
+
     public void removeUser(User user) {
         users.remove(user);
         user.setJoueur(null);
     }
-
 }
